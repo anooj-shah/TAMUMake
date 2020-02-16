@@ -23,13 +23,13 @@
 		<aside id="fh5co-hero">
 			<div class="flexslider">
 				<ul class="slides">
-			   	<li style="background-image: url(images/img_bg_3.jpg);">
+			   	<li style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ url_for('static', filename='images/check.jpg') }});">
 			   		<div class="overlay-gradient"></div>
 		   			<div class="row">
 			   			<div class="col-md-6 col-md-offset-3 slider-text slider-text-bg">
 			   				<div class="slider-text-inner text-center">
-			   					<h1>Work</h1>
-									<h2>Free html5 templates Made by <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></h2>
+			   					<h1 style="color: white"><strong>Confirmation</strong></h1>
+									<h2 style="color: white">Check that this is the correct message.</h2>
 			   				</div>
 			   			</div>
 			   		</div>
@@ -38,34 +38,28 @@
 		  	</div>
 		</aside>		
 		<div id="fh5co-work">
+			<form action="{{ url_for('thankyou') }}" method=post>
 			<div class="row">
+				{% for post in posts %}
+				<input type="hidden" id="val" name="val" value="{{post.hiddenID}}">
 				<div class="col-md-4">
-					<a href="{{ url_for('static', filename='images/funny.jpg') }}" class="image-popup img-portfolio-detail">
-						<img src="{{ url_for('static', filename='images/funny.jpg') }}" alt="Free HTML5 Template by FreeHTML5.co" class="img-responsive">
-					</a>
-					<a href="{{ url_for('static', filename='images/funny.jpg') }}" class="image-popup img-portfolio-detail">
-						<img src="{{ url_for('static', filename='images/funny.jpg') }}" alt="Free HTML5 Template by FreeHTML5.co" class="img-responsive">
-					</a>
-					<a href="{{ url_for('static', filename='images/funny.jpg') }}" class="image-popup img-portfolio-detail">
-						<img src="{{ url_for('static', filename='images/funny.jpg') }}" alt="Free HTML5 Template by FreeHTML5.co" class="img-responsive">
-					</a>
+						<img src="{{post.image_url}}" alt="Given Image" class="img-responsive">
 				</div>
 				<div class="col-md-8 fh5co-project-detail">
-					<h2 class="fh5co-project-title">Project Title</h2>
-					<span class="fh5co-project-sub">Package of the year</span>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet ullam ab perferendis aut repellat maxime reiciendis doloremque atque ipsa nostrum et at nihil quae placeat eum corporis laboriosam culpa, consequuntur aperiam praesentium rem totam fuga deleniti laborum! Possimus, hic, itaque?</p>
-
-					<div class="fh5co-project-service">
-						<h3>Services</h3>
-						<ul>
-							<li>Package Design</li>
-							<li>Printing</li>
-							<li>Branding</li>
-						</ul>
-					</div>
+					<br>
+					<h2 class="fh5co-project-title">{{post.recipientName}}</h2>
+					<p>{{post.cardDesc}}<br>
+					{{post.message}}<br>
+					{{post.sender}}</p>
+				{% endfor %}
+				<input type="button" value="Back" onclick="history.back(-1)" class="btn btn-primary btn-modify">
+				<input type="submit" value="Print Message" class="btn btn-primary btn-modify">
 				</div>
+			</form>
 
 	</div><!-- END container-wrap -->
+	</div>
+</div>
 
     {% include 'footerLinks.html' %}
 
