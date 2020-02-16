@@ -26,16 +26,26 @@ def create():
 def about():
     return render_template('about.html')
 
-@app.route('/temp')
-def temp():
-    return render_template('work-single.html')
+@app.route('/message-original')
+def original():
+    return render_template('message-original.html')
 
-@app.route('/temp2')
-def temp3():
-    return render_template('contact.html')
+@app.route('/message-love')
+def love():
+    return render_template('message-love.html')
 
-@app.route('/temp2', methods=['POST'])
-def temp2():
+@app.route('/message-love', methods=['POST'])
+def getValues():
+    yourName = request.form['yourName']
+    recipientName = request.form['recipientName']
+    address = request.form['address']
+    cardDesc = request.form['custId']
+    message = request.form['message']
+    print(cardDesc)
+    return render_template('index.html')
+
+@app.route('/message-original', methods=['POST'])
+def getVision():
     # ser = serial.Serial('/dev/ttyUSB0')
     # print(ser.name)
 
@@ -78,4 +88,4 @@ def temp2():
     # ser.write(messageToSend)
 
     # ser.close()
-    return render_template('contact.html')
+    return render_template('message-original.html')
