@@ -7,6 +7,8 @@ from google.cloud.speech import enums
 from google.cloud.speech import types
 import pyaudio
 from six.moves import queue
+import time
+# import pyserial
 
 # export GOOGLE_APPLICATION_CREDENTIALS="/Users/anoojshah/Downloads/PredictiveTime-bac476e44eb7.json"
 
@@ -122,6 +124,11 @@ def listen_print_loop(responses):
 
         else:
             print(transcript + overwrite_chars)
+            print("anooj:",transcript)
+            print(type(transcript))
+            transcript_arr = transcript.split()
+            if 'draw' in transcript_arr:
+                time.sleep(3)
 
             # Exit recognition if any of the transcribed phrases could be
             # one of our keywords.
@@ -148,11 +155,9 @@ def main():
 
     with MicrophoneStream(RATE, CHUNK) as stream:
         audio_generator = stream.generator()
-        requests = (types.StreamingRecognizeRequest(audio_content=content)
-                    for content in audio_generator)
+        requests = (types.StreamingRecognizeRequest(audio_content=content) for content in audio_generator)
 
         responses = client.streaming_recognize(streaming_config, requests)
-
         # Now, put the transcription responses to use.
         listen_print_loop(responses)
 
