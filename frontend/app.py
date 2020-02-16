@@ -15,3 +15,11 @@ def create():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.route('/temp')
+def temp():
+    return render_template('work-single.html')
+
+@app.route('/temp2')
+def temp2():
+    return render_template('contact.html')
