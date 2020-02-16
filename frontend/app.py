@@ -118,16 +118,17 @@ def getVision():
     image_caption = analysis["description"]["captions"][0]["text"].capitalize()
 
     print(image_caption)
-    messageToSend = recipientName + '-' + message + '-' + image_caption + '-' + yourName
+    messageToSend = recipientName + '\n' + message + '\n' + image_caption + '\n' + yourName
+    cardDesc = 'This card shows a picture of ' + image_caption.lower()
     posts = [
         {
             'hiddenID': messageToSend,
             'recipientName': 'Dear: ' + recipientName,
-            'cardDesc' : cardDesc,
+            'cardDesc' : image_caption,
             'message' : message,
             'sender' : 'Love, ' + yourName,
             'image_url' : image_url,
         }
     ]
 
-    return render_template('confirmation.html')
+    return render_template('confirmation.html', posts=posts)
