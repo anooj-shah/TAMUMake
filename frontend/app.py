@@ -69,11 +69,11 @@ def getValues():
     cardDesc = request.form['custId']
     message = request.form['message']
     image_url = request.form['imageURL']
-    messageToSend = recipientName + '-' + message + '-' + cardDesc + '-' + yourName
+    messageToSend = recipientName + '\n' + message + '\n' + cardDesc + '\n' + yourName
     posts = [
         {
             'hiddenID': messageToSend,
-            'recipientName': 'Dear: ' + recipientName,
+            'recipientName': 'Dear ' + recipientName +',',
             'cardDesc' : cardDesc,
             'message' : message,
             'sender' : 'Love, ' + yourName,
@@ -123,7 +123,7 @@ def getVision():
     posts = [
         {
             'hiddenID': messageToSend,
-            'recipientName': 'Dear: ' + recipientName,
+            'recipientName': 'Dear ' + recipientName + ',',
             'cardDesc' : image_caption,
             'message' : message,
             'sender' : 'Love, ' + yourName,
