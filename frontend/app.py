@@ -34,7 +34,23 @@ def original():
 def love():
     return render_template('message-love.html')
 
-@app.route('/message-love', methods=['POST'])
+@app.route('/message-thankyou')
+def thanks():
+    return render_template('message-thankyou.html')
+
+@app.route('/message-holiday')
+def holiday():
+    return render_template('message-holiday.html')
+
+@app.route('/message-happybirthday')
+def happyBirthday():
+    return render_template('message-happybirthday.html')
+
+@app.route('/message-comedic')
+def comedic():
+    return render_template('message-comedic.html')
+
+@app.route('/thank-you', methods=['POST'])
 def getValues():
     yourName = request.form['yourName']
     recipientName = request.form['recipientName']
@@ -42,7 +58,7 @@ def getValues():
     cardDesc = request.form['custId']
     message = request.form['message']
     print(cardDesc)
-    return render_template('index.html')
+    return render_template('thankyou.html')
 
 @app.route('/message-original', methods=['POST'])
 def getVision():
