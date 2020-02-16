@@ -59,6 +59,12 @@ def getValues():
     address = request.form['address']
     cardDesc = request.form['custId']
     message = request.form['message']
+    web_arr = []
+    web_arr.append('Dear:',recipientName)
+    web_arr.append(cardDesc)
+    web_arr.append(message)
+    web_arr.append('Love,')
+    web_arr.append()
     print(cardDesc)
     # messageToSend = recipientName + '-' + message + '-' + cardDesc + '-' + yourName
     # messageToSend = messageToSend.encode('utf-8')
