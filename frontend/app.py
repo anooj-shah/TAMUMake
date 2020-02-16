@@ -51,6 +51,15 @@ def comedic():
     return render_template('message-comedic.html')
 
 @app.route('/thank-you', methods=['POST'])
+def thankyou():
+    val = request.form['val']
+    print(val)
+    # messageToSend = val.encode('utf-8')
+    # ser.write(messageToSend)
+    # ser.close()
+    return render_template('thankyou.html')
+
+@app.route('/confirmation', methods=['POST'])
 def getValues():
     # ser = serial.Serial('/dev/ttyUSB0')
     # print(ser.name)
@@ -59,18 +68,22 @@ def getValues():
     address = request.form['address']
     cardDesc = request.form['custId']
     message = request.form['message']
-    web_arr = []
-    web_arr.append('Dear:',recipientName)
-    web_arr.append(cardDesc)
-    web_arr.append(message)
-    web_arr.append('Love,')
-    web_arr.append()
-    print(cardDesc)
-    # messageToSend = recipientName + '-' + message + '-' + cardDesc + '-' + yourName
+    image_url = request.form['imageURL']
+    messageToSend = recipientName + '-' + message + '-' + cardDesc + '-' + yourName
+    posts = [
+        {
+            'hiddenID': messageToSend,
+            'recipientName': 'Dear: ' + recipientName,
+            'cardDesc' : cardDesc,
+            'message' : message,
+            'sender' : 'Love, ' + yourName,
+            'image_url' : image_url,
+        }
+    ]
     # messageToSend = messageToSend.encode('utf-8')
     # ser.write(messageToSend)
     # ser.close()
-    return render_template('thankyou.html')
+    return render_template('confirmation.html', posts=posts)
 
 @app.route('/message-original', methods=['POST'])
 def getVision():
@@ -105,8 +118,16 @@ def getVision():
     image_caption = analysis["description"]["captions"][0]["text"].capitalize()
 
     print(image_caption)
-    # messageToSend = recipientName + '-' + message + '-' + image_caption + '-' + yourName
-    # messageToSend = messageToSend.encode('utf-8')
-    # ser.write(messageToSend)
-    # ser.close()
-    return render_template('message-original.html')
+    messageToSend = recipientName + '-' + message + '-' + image_caption + '-' + yourName
+        posts = [
+        {
+            'hiddenID': messageToSend,
+            'recipientName': 'Dear: ' + recipientName,
+            'cardDesc' : cardDesc,
+            'message' : message,
+            'sender' : 'Love, ' + yourName,
+            'image_url' : image_url,
+        }
+    ]
+
+    return render_template('confirmation.html')

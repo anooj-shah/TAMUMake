@@ -38,34 +38,27 @@
 		  	</div>
 		</aside>		
 		<div id="fh5co-work">
+			<form action="{{ url_for('thankyou') }}" method=post>
 			<div class="row">
+				{% for post in posts %}
+				<input type="hidden" id="val" name="val" value="{{post.hiddenID}}">
 				<div class="col-md-4">
-					<a href="{{ url_for('static', filename='images/funny.jpg') }}" class="image-popup img-portfolio-detail">
-						<img src="{{ url_for('static', filename='images/funny.jpg') }}" alt="Free HTML5 Template by FreeHTML5.co" class="img-responsive">
-					</a>
-					<a href="{{ url_for('static', filename='images/funny.jpg') }}" class="image-popup img-portfolio-detail">
-						<img src="{{ url_for('static', filename='images/funny.jpg') }}" alt="Free HTML5 Template by FreeHTML5.co" class="img-responsive">
-					</a>
-					<a href="{{ url_for('static', filename='images/funny.jpg') }}" class="image-popup img-portfolio-detail">
-						<img src="{{ url_for('static', filename='images/funny.jpg') }}" alt="Free HTML5 Template by FreeHTML5.co" class="img-responsive">
-					</a>
+						<img src="{{post.image_url}}" alt="Given Image" class="img-responsive">
 				</div>
 				<div class="col-md-8 fh5co-project-detail">
-					<h2 class="fh5co-project-title">Project Title</h2>
-					<span class="fh5co-project-sub">Package of the year</span>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet ullam ab perferendis aut repellat maxime reiciendis doloremque atque ipsa nostrum et at nihil quae placeat eum corporis laboriosam culpa, consequuntur aperiam praesentium rem totam fuga deleniti laborum! Possimus, hic, itaque?</p>
-
-					<div class="fh5co-project-service">
-						<h3>Services</h3>
-						<ul>
-							<li>Package Design</li>
-							<li>Printing</li>
-							<li>Branding</li>
-						</ul>
-					</div>
+					<br>
+					<h2 class="fh5co-project-title">{{post.recipientName}}</h2>
+					<p>{{post.cardDesc}}<br>
+					{{post.message}}<br>
+					{{post.sender}}</p>
+				{% endfor %}
+				<input type="submit" value="Send Message" class="btn btn-primary btn-modify">
 				</div>
+			</form>
 
 	</div><!-- END container-wrap -->
+	</div>
+</div>
 
     {% include 'footerLinks.html' %}
 
