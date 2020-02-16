@@ -119,7 +119,7 @@ def getVision():
 
     print(image_caption)
     messageToSend = recipientName + '-' + message + '-' + image_caption + '-' + yourName
-        posts = [
+    posts = [
         {
             'hiddenID': messageToSend,
             'recipientName': 'Dear: ' + recipientName,
