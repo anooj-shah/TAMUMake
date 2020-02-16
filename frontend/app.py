@@ -77,5 +77,5 @@ def temp2():
     # messageToSend = messageToSend.encode('utf-8')
     # ser.write(messageToSend)
 
-    ser.close()
+    # ser.close()
     return render_template('contact.html')
