@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Message</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
+	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+	<meta name="author" content="freehtml5.co" />
+
+	{% include 'headerLinks.html' %}
+	{% set active_page = "index" %}
+
+</head>
+<body>
+
+	<div class="fh5co-loader"></div>
+
+	<div id="page">
+		{% include 'navigation.html' %}
+		<div class="container-wrap">
+			<aside id="fh5co-hero">
+				<div class="flexslider">
+					<ul class="slides">
+						<li style="background-image: url({{ url_for('static', filename='images/img_bg_3.jpg') }});">
+							<div class="overlay-gradient"></div>
+							<div class="container-fluids">
+								<div class="row">
+									<div class="col-md-6 col-md-offset-3 slider-text slider-text-bg">
+										<div class="slider-text-inner text-center">
+											<h1>Message</h1>
+											<h2>Dylan is an AMAZING PERSON</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</aside>
+			<div id="fh5co-contact">
+				<div class="row animate-box">
+					<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+						<h2>Fill out some more information</h2>
+						<p>Everyone deserves a card on their special day...</p>
+					</div>
+				</div>
+				<div class="row">
+					<!-- <div class="col-md-3 col-md-push-1 animate-box">
+					<h3>Our Address</h3>
+					<ul class="contact-info">
+						<li><i class="icon-location4"></i>198 West 21th Street, Suite 721 New York NY 10016</li>
+						<li><i class="icon-phone3"></i>+ 1235 2355 98</li>
+						<li><i class="icon-location3"></i><a href="#">info@yoursite.com</a></li>
+						<li><i class="icon-globe2"></i><a href="#">www.yoursite.com</a></li>
+					</ul>
+				</div> -->
+					<div class="col-md-6 col-md-push-3 animate-box">
+						<form action="{{ url_for('temp2') }}" method=post>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" name="yourName" class="form-control" placeholder="Your Name">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" name="recipientName" class="form-control" placeholder="Recipient Name">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="text" name="address" class="form-control" placeholder="address">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="text" name="imageURL" class="form-control" size=100 placeholder="Image">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<textarea name="message" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="submit" value="Send Message" class="btn btn-primary btn-modify">
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div><!-- END container-wrap -->
+
+	</div>
+
+	{% include 'footerLinks.html' %}
+
+</body>
+
+</html>

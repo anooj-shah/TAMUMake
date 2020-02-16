@@ -52,12 +52,24 @@ def comedic():
 
 @app.route('/thank-you', methods=['POST'])
 def getValues():
+    # ser = serial.Serial('/dev/ttyUSB0')
+    # print(ser.name)
     yourName = request.form['yourName']
     recipientName = request.form['recipientName']
     address = request.form['address']
     cardDesc = request.form['custId']
     message = request.form['message']
+    web_arr = []
+    web_arr.append('Dear:',recipientName)
+    web_arr.append(cardDesc)
+    web_arr.append(message)
+    web_arr.append('Love,')
+    web_arr.append()
     print(cardDesc)
+    # messageToSend = recipientName + '-' + message + '-' + cardDesc + '-' + yourName
+    # messageToSend = messageToSend.encode('utf-8')
+    # ser.write(messageToSend)
+    # ser.close()
     return render_template('thankyou.html')
 
 @app.route('/message-original', methods=['POST'])
@@ -70,11 +82,7 @@ def getVision():
     address = request.form['address']
     image_url = request.form['imageURL']
     message = request.form['message']
-
     print(yourName, message)
-    # id = request.args.get('id')
-
-
     if 'COMPUTER_VISION_SUBSCRIPTION_KEY' in os.environ:
         subscription_key = os.environ['COMPUTER_VISION_SUBSCRIPTION_KEY']
     else:
@@ -85,8 +93,6 @@ def getVision():
         endpoint = os.environ['COMPUTER_VISION_ENDPOINT']
 
     analyze_url = endpoint + "vision/v2.1/analyze"
-
-    # image_url = "https://image.shutterstock.com/image-photo/close-photo-cheerful-excited-glad-260nw-789414166.jpg"
     # USE THIS::: https://images-na.ssl-images-amazon.com/images/I/61wtSL1Yd6L._AC_SX425_.jpg
     headers = {'Ocp-Apim-Subscription-Key': subscription_key}
     params = {'visualFeatures': 'Categories,Description,Color'}
@@ -102,6 +108,5 @@ def getVision():
     # messageToSend = recipientName + '-' + message + '-' + image_caption + '-' + yourName
     # messageToSend = messageToSend.encode('utf-8')
     # ser.write(messageToSend)
-
     # ser.close()
     return render_template('message-original.html')
